@@ -15,12 +15,17 @@ public class ActionWord
     /// キーワードによってアクションが実行されるクラスを生成する
     /// </summary>
     /// <param name="keywords">キーを含むワードリスト</param>
-    /// <param name="action">実行アクション</param>
-    public ActionWord(IList<string> keywords, Action foundAction, Action missingAction)
+    /// <param name="foundAction">キー発見時のアクション</param>
+    /// <param name="missingAction">キーが発見できなかった時のアクション</param>
+    public ActionWord(IList<string> keywords, Action foundAction, Action missingAction = null)
     {
         this.keywords = keywords;
         this.foundAction = foundAction;
         this.missingAction = missingAction;
+
+        //アクションがNULLの場合何もしないようにする
+        foundAction = foundAction == null ? () => { } : foundAction;
+        missingAction = missingAction == null ? () => { } : missingAction;
     }
 
     /// <summary>
