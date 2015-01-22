@@ -209,3 +209,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/Assets/Image
+/Assets/Prefab/Effect
+*.prefab
