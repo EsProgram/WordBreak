@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// KeyCodeの機能を拡張する静的クラス
+/// </summary>
 public static class KeyCodeExtension
 {
     /// <summary>
     /// キーコードを文字に変換して返す
-    /// A-Z,Return,Spaceに対応
+    /// 登録されていないものは'\0'が返る
     /// </summary>
-    /// <param name="keycode">変換対象</param>
+    /// <param name="keycode">変換された文字</param>
     /// <returns></returns>
     public static char KeyCode2Char(this KeyCode keycode)
     {
@@ -100,6 +101,10 @@ public static class KeyCodeExtension
 
             case KeyCode.Space:
                 ret = ' ';
+                break;
+
+            case KeyCode.Backspace:
+                ret = '\b';
                 break;
 
             default:

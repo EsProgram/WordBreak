@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class MethodTest : MonoBehaviour
 {
-    private ConvertInputKey2Char c;
+    public GameObject pref;
 
     public void Awake()
     {
-        c = FindObjectOfType<ConvertInputKey2Char>();
+        Instantiate(pref);
     }
 
     private void Update()
     {
-        Debug.Log(c.GetCurrentKeyDown() == '\n' ? "Return!" : c.GetCurrentKeyDown().ToString());
     }
 }
