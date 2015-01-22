@@ -1,20 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// 入力されたキーに対応する文字を毎フレーム格納し、取得する機能を持つ
-/// </summary>
 public class ConvertInputKey2Char : MonoBehaviour
 {
     private char buf = default(char);
-
-    /// <summary>
-    /// ConvertInputKey2Charのインスタンスを得る
-    /// </summary>
-    public static ConvertInputKey2Char GetInstance()
-    {
-        return FindObjectOfType<ConvertInputKey2Char>();
-    }
 
     private ConvertInputKey2Char()
     {
@@ -80,14 +69,11 @@ public class ConvertInputKey2Char : MonoBehaviour
             buf = KeyCode.Return.KeyCode2Char();
         if(Input.GetKeyDown(KeyCode.Space))
             buf = KeyCode.Space.KeyCode2Char();
-        if(Input.GetKeyDown(KeyCode.Backspace))
-            buf = KeyCode.Backspace.KeyCode2Char();
     }
 
     /// <summary>
     /// キーボードからの入力をcharで取得する
     /// そのフレーム内で押されていなかった場合は'\0'になる
-    /// 登録していないものは'\0'が返る
     /// </summary>
     /// <returns>押されたキーのchar値</returns>
     public char GetCurrentKeyDown()
