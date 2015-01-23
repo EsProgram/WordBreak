@@ -14,32 +14,30 @@ public class ActionObject : MonoBehaviour
     private List<string> keywords = default(List<string>);
 
     [SerializeField]
-    private GameObject effectOnDestroy;
+    private GameObject effectOnDestroy = default(GameObject);
 
-    private const int MAX_LENGTH = 20;
-
-    private Text inputView;
     private ActionWord action;
-    private ConvertInputKey2Char key_converter;
-    private StringBuilder input;
+    private string line;
+
+    public void Awake()
+    {
+    }
 
     public void Start()
     {
+        //アクションの追加
         action = new ActionWord(keywords,
             () =>
             {
-                Debug.Log(string.Format("{0}が見つかりました", input.ToString()));
+                Debug.Log("見つかりました");
                 GameObject.Instantiate(effectOnDestroy, transform.position, Quaternion.identity);
                 Destroy(gameObject, 1f);
             },
             () =>
             {
-                Debug.Log(string.Format("{0}が見つかりませんでした", input.ToString()));
+                Debug.Log("見つかりませんでした");
             }
             );
-        key_converter = ConvertInputKey2Char.GetInstance();
-        input = new StringBuilder();
-        inputView = FindObjectOfType<Text>();
 
         //キーワード全てを大文字に変換
         for(int i = 0; i < keywords.Count; ++i)
@@ -48,28 +46,11 @@ public class ActionObject : MonoBehaviour
 
     private void Update()
     {
-        //Spaceは無視
-        if(key_converter.GetCurrentKeyDown() == ' ')
-            return;
-        //リターンキーならそれまでの文字をイベントに送る
-        if(key_converter.GetCurrentKeyDown() == '\n')
+        //returnキーが押されたらバッファの1行をとってきてアクションする
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            action.DoAction(input.ToString());
-            input = new StringBuilder();
-            inputView.text = "";
-            return;
+            line = InputBuffer.GetLineBuffer();
+            action.DoAction(line);
         }
-        //押されたキーをアペンドする(制限数以上は入力不可)
-        if(key_converter.GetCurrentKeyDown() != '\0')
-            //Backspaceなら1文字消す
-            if(key_converter.GetCurrentKeyDown() == '\b')
-            {
-                if(input.Length > 0)
-                    input.Remove(input.Length - 1, 1);
-            }
-            else if(input.Length < MAX_LENGTH)
-                input.Append(key_converter.GetCurrentKeyDown());
-        //Viewに表示する
-        inputView.text = input.ToString();
     }
 }

@@ -212,3 +212,4 @@ ModelManifest.xml
 /Assets/Image
 /Assets/Prefab/Effect
 *.prefab
+/Assets/Scene

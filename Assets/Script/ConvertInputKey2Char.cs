@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 入力されたキーをchar型の文字に変換し保持する
+/// </summary>
 public class ConvertInputKey2Char : MonoBehaviour
 {
     private char buf = default(char);
+
+    public static ConvertInputKey2Char GetInstance()
+    {
+        return FindObjectOfType<ConvertInputKey2Char>();
+    }
 
     private ConvertInputKey2Char()
     {
@@ -69,6 +77,8 @@ public class ConvertInputKey2Char : MonoBehaviour
             buf = KeyCode.Return.KeyCode2Char();
         if(Input.GetKeyDown(KeyCode.Space))
             buf = KeyCode.Space.KeyCode2Char();
+        if(Input.GetKeyDown(KeyCode.Backspace))
+            buf = KeyCode.Backspace.KeyCode2Char();
     }
 
     /// <summary>

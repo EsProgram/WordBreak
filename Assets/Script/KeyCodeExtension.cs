@@ -102,6 +102,10 @@ public static class KeyCodeExtension
                 ret = ' ';
                 break;
 
+            case KeyCode.Backspace:
+                ret = '\b';
+                break;
+
             default:
                 //例外
                 throw new CodeNotFoundException("指定されたキーコードに対応する文字が見つかりませんでした");
