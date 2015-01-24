@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// 背景スクロール
+/// </summary>
 public class Scroll : MonoBehaviour
 {
     /// <summary>
