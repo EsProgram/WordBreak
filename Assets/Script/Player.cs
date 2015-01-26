@@ -14,9 +14,12 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Return))
         {
-            GameObject.Instantiate(magicEffect, transform.position, Quaternion.identity);
-
-            StartCoroutine(CallSetActionFlag());
+            if(InputBuffer.GetLineBuffer().Length > 0)
+            {
+                InputBuffer.allowInput = false;
+                GameObject.Instantiate(magicEffect, transform.position, Quaternion.identity);
+                StartCoroutine(CallSetActionFlag());
+            }
         }
     }
 

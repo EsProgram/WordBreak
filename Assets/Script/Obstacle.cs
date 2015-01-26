@@ -28,6 +28,7 @@ public class Obstacle : ActionObject
     {
         if(!walk.walking)
         {
+            base.FoundAction();
             GameObject.Instantiate(effectOnDestroy, transform.position, Quaternion.identity);
             Destroy(gameObject, 1f);
         }
@@ -35,5 +36,6 @@ public class Obstacle : ActionObject
 
     protected override void MissingAction()
     {
+        base.MissingAction();
     }
 }

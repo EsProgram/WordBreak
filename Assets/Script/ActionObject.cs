@@ -27,12 +27,12 @@ public class ActionObject : MonoBehaviour
 
     protected virtual void FoundAction()
     {
-        Debug.Log(line + "が見つかりました");
+        InputBuffer.allowInput = false;
     }
 
     protected virtual void MissingAction()
     {
-        Debug.Log(line + "が見つかりませんでした");
+        InputBuffer.allowInput = true;
     }
 
     private void Start()
