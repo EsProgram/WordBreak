@@ -9,7 +9,7 @@ public class Walk : MonoBehaviour
     [SerializeField]
     private float walkSpeed = -1f;
 
-    private bool walking { get; set; }
+    public bool walking { get; private set; }
 
     public void Start()
     {

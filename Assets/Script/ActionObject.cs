@@ -18,6 +18,13 @@ public class ActionObject : MonoBehaviour
     private ActionWord action;
     private string line;
 
+    public bool actionFlag { get; private set; }
+
+    public void SetActionFlag()
+    {
+        actionFlag = true;
+    }
+
     protected virtual void FoundAction()
     {
         Debug.Log(line + "が見つかりました");
@@ -39,11 +46,12 @@ public class ActionObject : MonoBehaviour
 
     private void Update()
     {
-        //returnキーが押されたらバッファの1行をとってきてアクションする
-        if(Input.GetKeyDown(KeyCode.Return))
+        //フラグが立っていたら
+        if(actionFlag)
         {
             line = InputBuffer.GetLineBuffer();
             action.DoAction(line);
+            actionFlag = false;
         }
     }
 }
