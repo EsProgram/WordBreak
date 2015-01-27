@@ -10,6 +10,7 @@ public class StopEnemy : MonoBehaviour
         {
             coll.gameObject.SendMessage("Stop");
             InputBuffer.allowInput = true;
+            Scroll.Stop();
         }
     }
 }

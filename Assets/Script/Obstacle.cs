@@ -29,8 +29,13 @@ public class Obstacle : ActionObject
         if(!walk.walking)
         {
             base.FoundAction();
+            //ダメージを受けた際の動作
+
+            //破壊時の動作
             GameObject.Instantiate(effectOnDestroy, transform.position, Quaternion.identity);
             Destroy(gameObject, 1f);
+            Scroll.Run();
+            EnemyControl.born = true;
         }
     }
 

@@ -18,6 +18,7 @@ public class Scroll : MonoBehaviour
     private const float speed = 1f;
     private SpriteRenderer sr;
     private static ScrollState state;
+    private static Player player;
 
     /// <summary>
     /// スクロールを開始する
