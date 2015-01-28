@@ -42,7 +42,7 @@ public class EnemyControl : MonoBehaviour
                     else
                     {
                         //ステージクリア
-                        Debug.Log("clear");
+                        StageClear.isclear = true;
                     }
                 break;
 

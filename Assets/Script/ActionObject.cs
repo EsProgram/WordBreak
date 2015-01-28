@@ -17,22 +17,14 @@ public class ActionObject : MonoBehaviour
 
     private ActionWord action;
     private string line;
-
-    public bool actionFlag { get; private set; }
-
-    public void SetActionFlag()
-    {
-        actionFlag = true;
-    }
+    protected Walk walk;
 
     protected virtual void FoundAction()
     {
-        InputBuffer.allowInput = false;
     }
 
     protected virtual void MissingAction()
     {
-        InputBuffer.allowInput = true;
     }
 
     private void Start()
@@ -46,12 +38,12 @@ public class ActionObject : MonoBehaviour
 
     private void Update()
     {
-        //フラグが立っていたら
-        if(actionFlag)
+        if(Input.GetKeyDown(KeyCode.Return))
         {
             line = InputBuffer.GetLineBuffer();
-            action.DoAction(line);
-            actionFlag = false;
+            walk = FindObjectOfType<Walk>();
+            if(!walk.walking)
+                action.DoAction(line);
         }
     }
 }

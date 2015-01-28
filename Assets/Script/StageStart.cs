@@ -22,9 +22,6 @@ public class StageStart : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        //ゲームスタート前にやりたい処理
-        Debug.Log("ゲームスタート時の処理ができます");
-
         yield return new WaitForSeconds(2f);
         EnemyControl.gameState = EnemyControl.GameState.Play;
         Scroll.Run();

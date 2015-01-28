@@ -9,7 +9,6 @@ public class StopEnemy : MonoBehaviour
         if(coll.gameObject.tag.Equals("Enemy"))
         {
             coll.gameObject.SendMessage("Stop");
-            InputBuffer.allowInput = true;
             Scroll.Stop();
         }
     }

@@ -35,7 +35,10 @@ public class ActionWord
     public void DoAction(string key)
     {
         if(keywords.Contains(key))
+        {
+            keywords.Remove(key);
             foundAction();
+        }
         else
             missingAction();
     }

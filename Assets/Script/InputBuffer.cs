@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class InputBuffer : MonoBehaviour
 {
-    public static bool allowInput { get; set; }
-
-    private const int MAX_LENGTH = 20;
+    private const int MAX_LENGTH = 10;
     private static string line_buf;
     private Text inputView;
     private ConvertInputKey2Char key_converter;
@@ -20,7 +18,7 @@ public class InputBuffer : MonoBehaviour
 
     public void Awake()
     {
-        inputView = FindObjectOfType<Text>();
+        inputView = GameObject.FindWithTag("ShowText").GetComponent<Text>();
         key_converter = ConvertInputKey2Char.GetInstance();
     }
 
@@ -32,31 +30,30 @@ public class InputBuffer : MonoBehaviour
 
     private void Update()
     {
-        if(allowInput)
-            switch(key_converter.GetCurrentKeyDown())
-            {
-                case '\0':
-                    break;
+        switch(key_converter.GetCurrentKeyDown())
+        {
+            case '\0':
+                break;
 
-                case ' ':
-                    break;
+            case ' ':
+                break;
 
-                case '\n':
-                    line_buf = input.ToString();
-                    input = new StringBuilder();
-                    inputView.text = "";
-                    break;
+            case '\n':
+                line_buf = input.ToString();
+                input = new StringBuilder();
+                inputView.text = "";
+                break;
 
-                case '\b':
-                    if(input.Length > 0)
-                        input.Remove(input.Length - 1, 1);
-                    break;
+            case '\b':
+                if(input.Length > 0)
+                    input.Remove(input.Length - 1, 1);
+                break;
 
-                default:
-                    if(input.Length < MAX_LENGTH)
-                        input.Append(key_converter.GetCurrentKeyDown());
-                    break;
-            }
+            default:
+                if(input.Length < MAX_LENGTH)
+                    input.Append(key_converter.GetCurrentKeyDown());
+                break;
+        }
 
         //Viewに表示する
         inputView.text = input.ToString();
